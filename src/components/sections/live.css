@@ -1,0 +1,51 @@
+.dentes-cima,
+.dentes-baixo {
+  width: 100%;
+  height: 10rem;
+  background-color: #000;
+  transition: transform 0.5s ease;
+  padding-bottom: 10%;
+}
+
+.dentes-cima {
+  clip-path: polygon(
+    15% 0, 22% 100%, 29% 0, 36% 100%, 43% 0, 50% 100%, 57% 0, 64% 100%, 71% 0%, 78% 100%, 85% 0
+  );
+  /* clip-path: polygon( */
+  /*   10% 0, 17.5% 100%, 25% 0, 32.5% 100%, 40% 0, 47.5% 100%, 55% 0, 62.5% 100%, 70% 0, 77.5% 100%, 85% 0 */
+  /* ); */
+}
+
+.dentes-baixo {
+  /* clip-path: polygon(10% 100%, 17.5% 0, 25% 100%, 70% 100%, 77.5% 0, 85% 100%); */
+  clip-path: polygon(15% 100%, 22% 0, 29% 100%, 71% 100%, 78% 0, 85% 100%);
+}
+
+.bocao:hover:not(:has(.gengiva:hover)) .dentes-baixo {
+/* , .bocao:hover:not(:has(.gengiva:hover)) .gengiva { */
+  transform: translateY(20px)
+}
+
+.bocao:hover:not(:has(.gengiva:hover)) .dentes-cima {
+  transform: translateY(-20px)
+}
+
+.gengiva {
+  clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0, 85% 0, 78% 60%, 71% 0, 29% 0%, 22% 60%, 15% 0);
+  padding-bottom: 10%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  transition: transform 0.5s ease;
+}
+
+.gengiva:after {
+  content: "";
+  background-color: #FFB50D;
+  position: relative;
+  top: 80px;
+  height: 6rem;
+  width: 6rem;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
