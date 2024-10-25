@@ -1,0 +1,50 @@
+'use client'
+import { useState } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+
+interface CarouselProps {
+  items: React.ReactNode[];
+}
+
+export function Carousel({ items }: CarouselProps) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + items.length) % items.length);
+  };
+
+  return (
+    <div className="relative w-full">
+      <div className="flex overflow-hidden">
+        <div
+          className="flex transition-transform duration-500 ease-in-out"
+          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+        >
+          {items.map((item, index) => (
+            <div key={index} className="w-full flex-shrink-0">
+              {item}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <button
+        onClick={prevSlide}
+        className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-r-lg hover:bg-white"
+      >
+        <ChevronLeft size={24} />
+      </button>
+
+      <button
+        onClick={nextSlide}
+        className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-l-lg hover:bg-white"
+      >
+        <ChevronRight size={24} />
+      </button>
+    </div>
+  );
+}
