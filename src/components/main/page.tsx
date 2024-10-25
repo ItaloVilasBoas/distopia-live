@@ -1,7 +1,11 @@
-import LiveBanner from "../liveBanner/page";
+import LiveComponent from '@/components/sections/live/live'
+// import LiveBanner from '../liveBanner/page'
 
 export default function Main() {
   return (
-    <LiveBanner />
+    <>
+      {/* <LiveBanner/> */}
+      <LiveComponent />
+    </>
   )
 }
