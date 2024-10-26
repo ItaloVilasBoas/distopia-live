@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import './live.css'
+import DistopiaSVG from './distopia_svg';
+import LogoDistopia from './logo';
 
 const LiveComponent = () => {
   const [mensagem, setMensagem] = useState('Estamos ao vivo');
@@ -24,13 +26,15 @@ const LiveComponent = () => {
       </div>
       <div className="bocao">
         <div className="dentes-cima"></div>
-        {estaAoVivo && 
-          <div className="live-wave-container h-64">
-          {[...Array(10)].map((_, i) => (
-            <div key={i} className="live-wave rounded-full"></div>
-          ))}
+        <div className={`live-wave-container ${estaAoVivo ? 'active' : ''}`}>
+          {[...Array(10)].map((_, i) => ( <div key={i} className="live-wave rounded-full"></div>))}
+          <div style={{ width: '100vw' }}>
+            <DistopiaSVG/>
           </div>
-        }
+          <div className="distopia-logo">
+            <LogoDistopia/>
+          </div>
+        </div>
         <div className="dentes-baixo"></div>
         <div className="gengiva bg-black h-64"></div>
       </div>
