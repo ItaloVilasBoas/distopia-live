@@ -4,9 +4,10 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface CarouselProps {
   items: React.ReactNode[];
+  widthValue?: string; 
 }
 
-export function Carousel({ items }: CarouselProps) {
+export function Carousel({ items, widthValue }: CarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextSlide = () => {
@@ -25,7 +26,7 @@ export function Carousel({ items }: CarouselProps) {
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
           {items.map((item, index) => (
-            <div key={index} className="w-full flex-shrink-0">
+            <div key={index} className={`${widthValue} flex-shrink-0`}>
               {item}
             </div>
           ))}

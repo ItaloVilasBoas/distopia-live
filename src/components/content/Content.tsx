@@ -1,6 +1,7 @@
 import { Carousel } from "./Carousel";
 import { FeatureCard } from "./FeatureCard";
 
+import Videos from "../sections/videos/videos";
 const featuredItems = [
   {
     imageUrl: 'https://picsum.photos/800/400?random=1',
@@ -22,12 +23,15 @@ const featuredItems = [
 export default function Content() {
   return (
     <div className="min-h-screen bg-black p-8">
-      <h1 className="text-4xl font-bold text-white mb-8">Destaques</h1>
-      <Carousel
-        items={featuredItems.map((item, index) => (
-          <FeatureCard key={index} {...item} />
-        ))}
-      />
+      <div className="pb-16">
+        <h1 className="text-4xl font-bold text-white mb-8">Destaques</h1>
+        <Carousel widthValue="w-full"
+          items={featuredItems.map((item, index) => (
+            <FeatureCard key={index} {...item} />
+          ))}
+        />
+      </div>
+      <Videos />
     </div>
   );
 }
