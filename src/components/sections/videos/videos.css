@@ -1,0 +1,11 @@
+.video:hover {
+    cursor: pointer;
+    transition: .5s;
+    transform: scale(1.1);
+    overflow: hidden;
+    position: relative;
+}
+
+.video {
+    transition: .5s;
+}
