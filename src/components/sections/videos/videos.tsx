@@ -1,38 +1,11 @@
 import { Carousel } from "../../content/Carousel";
 import { VideoCard } from "./VideoCard";
 
-const featuredItems = [
-  {
-    imageUrl: 'https://picsum.photos/800/400?random=1',
-    title: 'Featured Item 1',
-    description: 'Description for featured item 1'
-  },
-  {
-    imageUrl: 'https://picsum.photos/800/400?random=2',
-    title: 'Featured Item 2',
-    description: 'Description for featured item 2'
-  },
-  {
-    imageUrl: 'https://picsum.photos/800/400?random=3',
-    title: 'Featured Item 3',
-    description: 'Description for featured item 3'
-  },
-  {
-    imageUrl: 'https://picsum.photos/800/400?random=4',
-    title: 'Featured Item 4',
-    description: 'Description for featured item 3'
-  },
-  {
-    imageUrl: 'https://picsum.photos/800/400?random=5',
-    title: 'Featured Item 5',
-    description: 'Description for featured item 1'
-  },
-  {
-    imageUrl: 'https://picsum.photos/800/400?random=6',
-    title: 'Featured Item 6',
-    description: 'Description for featured item 2'
-  }
-];
+const featuredItems = Array.from({ length: 30 }, (_, index) => ({
+  imageUrl: `https://picsum.photos/800/400?random=${index + 1}`,
+  title: `Featured Item ${index + 1}`,
+  description: `Description for featured item ${index + 1}`
+}));
 
 export default function Videos() {
   return (
