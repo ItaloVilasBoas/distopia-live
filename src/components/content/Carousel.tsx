@@ -7,7 +7,7 @@ interface CarouselProps {
   widthValue?: string; 
 }
 
-export function Carousel({ items, widthValue }: CarouselProps) {
+export function Carousel({ items, widthValue = 'w-96' }: CarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextSlide = () => {
@@ -19,18 +19,16 @@ export function Carousel({ items, widthValue }: CarouselProps) {
   };
 
   return (
-    <div className="relative w-full">
-      <div className="flex overflow-hidden">
-        <div
-          className="flex transition-transform duration-500 ease-in-out"
-          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-        >
-          {items.map((item, index) => (
-            <div key={index} className={`${widthValue} flex-shrink-0`}>
-              {item}
-            </div>
-          ))}
-        </div>
+    <div className="relative w-full overflow-hidden">
+      <div
+        className="flex transition-transform duration-500 ease-in-out"
+        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+      >
+        {items.map((item, index) => (
+          <div key={index} className={`${widthValue} flex-shrink-0`}>
+            {item}
+          </div>
+        ))}
       </div>
 
       <button
