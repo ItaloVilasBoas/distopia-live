@@ -2,6 +2,8 @@ import { Carousel } from "./Carousel";
 import { FeatureCard } from "./FeatureCard";
 
 import Videos from "../sections/videos/videos";
+import Tweets from "../sections/tweets/tweets";
+
 const featuredItems = [
   {
     imageUrl: 'https://picsum.photos/800/400?random=1',
@@ -32,6 +34,7 @@ export default function Content() {
         />
       </div>
       <Videos />
+      <Tweets />
     </div>
   );
 }
