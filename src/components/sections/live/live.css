@@ -121,7 +121,7 @@
   background-size: contain;
 	height: 70vw;
 	width: 70vw;
-	animation: pulse-live 2s ease-out;
+	animation: pulse-live 3s ease-out;
 	animation-iteration-count: infinite;
 	position: absolute;
 	z-index: 1;
