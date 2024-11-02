@@ -1,22 +1,19 @@
 "use client";
 
-import { useEffect, useState } from 'react';
-import './live.css'
+import './live.css';
 import DistopiaSVG from './distopia_svg';
 import LogoDistopia from './logo';
+import usePooling from '@/hooks/usePooling';
+import { config } from '@/lib/config';
 
 const LiveComponent = () => {
-  const [mensagem, setMensagem] = useState('Estamos ao vivo');
-  const [estaAoVivo, setEstaAoVivo] = useState(true);
+  const isOnline = usePooling(config.baseUrl, {
+    headers: {
+      'X-API-Key': config.apiKey,
+    },
+  });
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setMensagem((prevMensagem) => prevMensagem === 'Estamos ao vivo' ? 'Estamos offline' : 'Estamos ao vivo');
-      setEstaAoVivo((prevValor) => !prevValor)
-    }, 10000);
-  
-    return () => clearInterval(interval);
-  }, []);
+  const mensagem = isOnline ? 'Estamos ao vivo' : 'Estamos offline';
 
   return (
     <section>
@@ -26,7 +23,7 @@ const LiveComponent = () => {
       </div>
       <div className="bocao">
         <div className="dentes-cima"></div>
-        <div className={`live-wave-container ${estaAoVivo ? 'active' : ''}`}>
+        <div className={`live-wave-container ${isOnline ? 'active' : ''}`}>
           {[...Array(10)].map((_, i) => ( <div key={i} className="live-wave rounded-full"></div>))}
           <div style={{ width: '100vw' }}>
             <DistopiaSVG/>
@@ -40,6 +37,6 @@ const LiveComponent = () => {
       </div>
     </section>
   );
-}
+};
 
 export default LiveComponent;
