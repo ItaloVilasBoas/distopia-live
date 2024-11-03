@@ -1,4 +1,4 @@
-const LogoDistopia = () => {
+const DistopiaLogoSVG = () => {
   return (
     <svg viewBox="0 0 534 534" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: 'auto' }}>
       <mask id="mask0_4_104" style={{ maskType: 'luminance' }} maskUnits="userSpaceOnUse" x="3" y="3" width="527" height="528">
@@ -71,4 +71,4 @@ const LogoDistopia = () => {
   )
 }
 
-export default LogoDistopia;
+export default DistopiaLogoSVG;
