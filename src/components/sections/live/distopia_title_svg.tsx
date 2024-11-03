@@ -1,14 +1,6 @@
-const DistopiaSVG = () => {
+const DistopiaTitleSVG = ({ className }: { className: string }) => {
   return (
-    <svg viewBox="0 0 1306 721" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: 'auto' }}>
-      <mask id="mask0_4_52" style={{ maskType: 'luminance' }} maskUnits="userSpaceOnUse" x="0" y="1" width="1306" height="721">
-      <path d="M1306 1H0V767H1306V1Z" fill="white"/>
-      </mask>
-      <g mask="url(#mask0_4_52)">
-      <path d="M-362.11 777.6L572.3 399.76L290.3 434.87L-502.51 575.67L-362.11 777.6Z" fill="#FFB50D"/>
-      <path d="M1638.38 779.71L703.98 401.87L985.98 436.98L1778.79 577.78L1638.38 779.71Z" fill="#FFB50D"/>
-      <path d="M647.84 721.72C710.795 721.72 761.83 670.685 761.83 607.73C761.83 544.775 710.795 493.74 647.84 493.74C584.885 493.74 533.85 544.775 533.85 607.73C533.85 670.685 584.885 721.72 647.84 721.72Z" fill="#A94F95"/>
-      </g>
+    <svg viewBox="0 0 1306 721" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: 'auto', position: 'absolute' }} className={className}>
       <path d="M56.3501 179.96C56.7301 140.85 82.7301 98.95 125.82 99.55C150.62 99.9 169.07 110.72 177.52 134.23C178.07 134.29 178.34 134.32 178.89 134.39V60.72H225.94V317.24C210.7 309.52 195.53 301.68 180.26 294.03V272.15C179.71 271.88 179.44 271.74 178.89 271.47C164.77 285.95 142.38 280.12 125.83 274.07C86.6601 259.73 55.9401 222.74 56.3601 179.98L56.3501 179.96ZM173.42 214.61C172.96 193.84 162.37 160.23 139.5 154.4C119.42 149.28 106.56 170.32 106.4 187.57C106.21 209.07 119.81 227.55 139.5 235.6C157.48 242.95 173.88 235.5 173.42 214.61Z" fill="black"/>
       <path d="M260.94 103.65H307.99V350.77C291.84 346.03 276.37 340.13 260.94 333.43V103.65Z" fill="black"/>
       <path d="M260.94 45.15H307.99V90.95H260.94V45.15Z" fill="black"/>
@@ -24,4 +16,4 @@ const DistopiaSVG = () => {
   )
 }
 
-export default DistopiaSVG;
+export default DistopiaTitleSVG;

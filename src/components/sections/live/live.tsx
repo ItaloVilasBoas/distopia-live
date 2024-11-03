@@ -1,10 +1,11 @@
 "use client";
 
 import './live.css';
-import DistopiaSVG from './distopia_svg';
-import LogoDistopia from './logo';
+import DistopiaTongueSVG from './distopia_tongue_svg';
+import DistopiaLogoSVG from './distopia_logo_svg';
 import usePooling from '@/hooks/usePooling';
 import { config } from '@/lib/config';
+import DistopiaTitleSVG from './distopia_title_svg';
 
 const LiveComponent = () => {
   const isOnline = usePooling(config.baseUrl, {
@@ -13,7 +14,7 @@ const LiveComponent = () => {
     },
   });
 
-  const mensagem = isOnline ? 'Estamos ao vivo' : 'Estamos offline';
+  const mensagem = isOnline ? 'Estamos ao vivo' : 'Live off';
 
   return (
     <section>
@@ -21,15 +22,16 @@ const LiveComponent = () => {
         <span className="bg-white rounded-full w-4 h-4 animate-pulse"></span>
         <span className="font-bold uppercase">{mensagem}</span>
       </div>
-      <div className="bocao">
+      <div className={`bocao ${isOnline ? 'aberto' : ''}`}>
         <div className="dentes-cima"></div>
         <div className={`live-wave-container ${isOnline ? 'active' : ''}`}>
           {[...Array(10)].map((_, i) => ( <div key={i} className="live-wave rounded-full"></div>))}
           <div style={{ width: '100vw' }}>
-            <DistopiaSVG/>
+            <DistopiaTitleSVG className="title"/>
+            <DistopiaTongueSVG/>
           </div>
           <div className="distopia-logo">
-            <LogoDistopia/>
+            <DistopiaLogoSVG/>
           </div>
         </div>
         <div className="dentes-baixo"></div>
