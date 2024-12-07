@@ -1,14 +1,13 @@
 import Content from "@/components/content/Content"
-import Header from "@/components/header/page"
-import Main from "@/components/main/page"
+import DiscordWidget from "@/components/sections/discord/discord_widget"
+import LiveComponent from "@/components/sections/live/live"
 
 export default function Home() {
   return (
     <>
-      {/* TODO: move to layout.tsx header logic*/}
-      <Header />
-      <Main />
+      <LiveComponent />
       <Content />
+      <DiscordWidget />
     </>
   )
 }

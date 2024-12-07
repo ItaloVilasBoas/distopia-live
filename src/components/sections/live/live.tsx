@@ -8,11 +8,12 @@ import { config } from '@/lib/config';
 import DistopiaTitleSVG from './distopia_title_svg';
 
 const LiveComponent = () => {
-  const isOnline = usePooling(config.baseUrl, {
-    headers: {
-      'X-API-Key': config.apiKey,
-    },
-  });
+  const isOnline = true;
+  // usePooling(config.baseUrl, {
+  //   headers: {
+  //     'X-API-Key': config.apiKey,
+  //   },
+  // });
 
   const mensagem = isOnline ? 'Estamos ao vivo' : 'Live off';
 
