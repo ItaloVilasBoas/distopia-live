@@ -2,18 +2,17 @@
 
 import './live.css';
 import DistopiaTongueSVG from './distopia_tongue_svg';
-import DistopiaLogoSVG from './distopia_logo_svg';
+import DistopiaLogoSVG from '../../ui/distopia_logo_svg';
 import usePooling from '@/hooks/usePooling';
 import { config } from '@/lib/config';
 import DistopiaTitleSVG from './distopia_title_svg';
 
 const LiveComponent = () => {
-  const isOnline = true;
-  // usePooling(config.baseUrl, {
-  //   headers: {
-  //     'X-API-Key': config.apiKey,
-  //   },
-  // });
+  const isOnline = usePooling(config.baseUrl, {
+    headers: {
+      'X-API-Key': config.apiKey,
+    },
+  });
 
   const mensagem = isOnline ? 'Estamos ao vivo' : 'Live off';
 
@@ -21,7 +20,7 @@ const LiveComponent = () => {
     <section>
       <div className="bg-black text-white flex items-center justify-center h-16 gap-2.5">
         <span className="bg-white rounded-full w-4 h-4 animate-pulse"></span>
-        <span className="font-bold uppercase">{mensagem}</span>
+        <span className="font-bold uppercase dystopian text-3xl">{mensagem}</span>
       </div>
       <div className={`bocao ${isOnline ? 'aberto' : ''}`}>
         <div className="dentes-cima"></div>
