@@ -3,6 +3,7 @@ import { FeatureCard } from "./FeatureCard";
 
 import Videos from "../sections/videos/videos";
 import Tweets from "../sections/tweets/tweets";
+import FooterArt from "../sections/footer-art/footer_art";
 
 const featuredItems = [
   {
