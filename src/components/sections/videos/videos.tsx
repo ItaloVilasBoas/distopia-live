@@ -10,7 +10,7 @@ const featuredItems = Array.from({ length: 30 }, (_, index) => ({
 export default function Videos() {
   return (
     <div className="bg-black px-32 pt-16">
-      <h3 className="text-3xl font-bold text-white mb-6">Vídeos recentes</h3>
+      <h3 className="text-3xl dystopian font-bold text-white mb-6">Vídeos recentes</h3>
       <Carousel widthValue="w-96"
         items={featuredItems.map((item, index) => (
           <VideoCard key={index} {...item} />
