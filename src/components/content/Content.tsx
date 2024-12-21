@@ -41,9 +41,9 @@ export default function Content() {
           <div className="bg-white w-11 h-10"></div>
         </div>
         <div className="relative">
-          <span className="text-5xl font-bold text-white">distopia.</span>
-          <span className="text-5xl font-bold text-white absolute top-6 right-0">distopia.</span>
-          <span className="text-5xl font-bold text-white absolute bottom-6 right-0">distopia.</span>
+          <span className="text-5xl font-extrabold text-white dystopian">distopia.</span>
+          <span className="text-5xl font-extrabold text-white absolute top-6 right-0 dystopian">distopia.</span>
+          <span className="text-5xl font-extrabold text-white absolute bottom-6 right-0 dystopian">distopia.</span>
         </div>
         <div className="flex gap-4">
           <div className="bg-[#9e4688] w-32 h-10"></div>

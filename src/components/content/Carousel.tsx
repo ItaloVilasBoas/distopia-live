@@ -10,6 +10,14 @@ interface CarouselProps {
 export function Carousel({ items, widthValue = 'w-96' }: CarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  let [widthNumberValue, widthUnit] = widthValue.includes('-') 
+    ? [Number(widthValue.split('-')[1]) * 0.25, 'rem']
+    : [Number(widthValue.split(/(?=\D)/)[0]), widthValue.split(/(?=\D)/)[1]]; 
+  if(widthValue === 'w-full') {
+    widthNumberValue = 100;
+    widthUnit = '%';
+  }
+
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
   };
@@ -22,7 +30,7 @@ export function Carousel({ items, widthValue = 'w-96' }: CarouselProps) {
     <div className="relative w-full overflow-hidden">
       <div
         className="flex transition-transform duration-500 ease-in-out"
-        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+        style={{ transform: `translateX(-${currentIndex * widthNumberValue}${widthUnit})` }}
       >
         {items.map((item, index) => (
           <div key={index} className={`${widthValue} flex-shrink-0`}>
