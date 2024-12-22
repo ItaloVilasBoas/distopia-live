@@ -1,10 +1,10 @@
-'use client'
+'use client';
 import { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface CarouselProps {
   items: React.ReactNode[];
-  widthValue?: string; 
+  widthValue?: string;
 }
 
 export function Carousel({ items, widthValue = 'w-96' }: CarouselProps) {
@@ -12,8 +12,9 @@ export function Carousel({ items, widthValue = 'w-96' }: CarouselProps) {
 
   let [widthNumberValue, widthUnit] = widthValue.includes('-') 
     ? [Number(widthValue.split('-')[1]) * 0.25, 'rem']
-    : [Number(widthValue.split(/(?=\D)/)[0]), widthValue.split(/(?=\D)/)[1]]; 
-  if(widthValue === 'w-full') {
+    : [Number(widthValue.split(/(?=\D)/)[0]), widthValue.split(/(?=\D)/)[1]];
+  
+  if (widthValue === 'w-full') {
     widthNumberValue = 100;
     widthUnit = '%';
   }
@@ -39,19 +40,23 @@ export function Carousel({ items, widthValue = 'w-96' }: CarouselProps) {
         ))}
       </div>
 
-      <button
-        onClick={prevSlide}
-        className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-r-lg hover:bg-white"
-      >
-        <ChevronLeft size={24} />
-      </button>
+      {currentIndex > 0 && (
+        <button
+          onClick={prevSlide}
+          className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-r-lg hover:bg-white"
+        >
+          <ChevronLeft size={24} />
+        </button>
+      )}
 
-      <button
-        onClick={nextSlide}
-        className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-l-lg hover:bg-white"
-      >
-        <ChevronRight size={24} />
-      </button>
+      {currentIndex < items.length - 1 && (
+        <button
+          onClick={nextSlide}
+          className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-l-lg hover:bg-white"
+        >
+          <ChevronRight size={24} />
+        </button>
+      )}
     </div>
   );
 }

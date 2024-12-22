@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { MoreHorizontal } from "lucide-react"
+import { Grip } from "lucide-react"
 
 export default function Header() {
   return (
@@ -19,16 +19,16 @@ export default function Header() {
         </a>
       </nav>
       <div className="flex items-center space-x-4">
-        <div className="flex items-center rounded-full border border-gray-300 overflow-hidden">
+        <div className="flex items-center rounded-full border border-neutral-950 overflow-hidden">
           <Button variant="ghost" className="rounded-l-full px-4 hover:bg-transparent">
             Entrar
           </Button>
-          <Button variant="default" className="rounded-r-full px-4 bg-black hover:bg-gray-800">
+          <Button variant="default" className="rounded-full px-4 bg-black hover:bg-gray-800">
             Cadastrar
           </Button>
         </div>
-        <Button variant="ghost" size="icon" className="text-gray-600">
-          <MoreHorizontal className="h-6 w-6" />
+        <Button variant="ghost" size="icon">
+          <Grip className="text-gray-600" />
         </Button>
       </div>
     </header>
