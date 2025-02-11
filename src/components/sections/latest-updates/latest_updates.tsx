@@ -2,7 +2,6 @@ import DistopiaLogoSVG from "@/components/ui/distopia_logo_svg";
 import Image from "next/image";
 import Link from "next/link";
 
-
 export default function LatestUpdates() {
   const latestMangas = [1,2,3,4,5].map(i => ({
     imageUrl: `https://picsum.photos/800/400?random=${i}`,
@@ -17,9 +16,9 @@ export default function LatestUpdates() {
     name: `Item ${i}`,
   }));
   const sections = [
-    { title: 'Mangá', list: latestMangas, link: '/arts/nao-implementado' },
-    { title: 'Animação', list: latestAnimation, link: '/arts/nao-implementado' },
-    { title: 'Galeria', list: latestGallery, link: '/arts/nao-implementado' },
+    { title: 'Mangá', list: latestMangas, link: '/arts/manga' },
+    { title: 'Animação', list: latestAnimation, link: '/arts/animation' },
+    { title: 'Galeria', list: latestGallery, link: '/arts/gallery' },
   ];
 
   return (

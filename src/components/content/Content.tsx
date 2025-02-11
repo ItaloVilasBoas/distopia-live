@@ -1,8 +1,8 @@
-import { Carousel } from "./Carousel";
 import { FeatureCard } from "./FeatureCard";
 
 import Videos from "../sections/videos/videos";
 import Tweets from "../sections/tweets/tweets";
+import { Carousel } from "../ui/carousel";
 
 const featuredItems = [
   {

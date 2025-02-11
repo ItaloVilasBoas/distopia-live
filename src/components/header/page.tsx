@@ -7,7 +7,9 @@ import { usePathname } from "next/navigation";
 
 export default function Header() {
   const currentTab = usePathname();
-  const isArts = currentTab === "/arts";
+  const isArts = currentTab?.startsWith("/arts");
+  const isMembers = currentTab?.startsWith("/members");
+  const isHome = currentTab == "/";
 
   const textColor = isArts ? "white" : "black";
   const bgColor = isArts ? "black" : "white";
@@ -15,19 +17,16 @@ export default function Header() {
 
   const selectedClass = `bg-${textColor} text-${bgColor} px-4 py-2`;
   const tabClass = `text-${textColor} hover:text-[#ffb50d]`;
-  console.log('textColor:',textColor)
-  console.log('bgColor:',bgColor)
-  console.log('borderColor:',borderColor)
 
   return (
     <header className={`flex items-center justify-between px-6 py-4 bg-${bgColor} border-b`}>
       <div className={`text-2xl font-bold text-${textColor}`}>distopia.</div>
       <nav className="absolute left-1/2 transform -translate-x-1/2 flex items-center space-x-12">
-        <Link href="members" className={currentTab === "/members" ? selectedClass : tabClass}>Membros</Link>
+        <Link href="/members" className={ isMembers ? selectedClass : tabClass }>Membros</Link>
         <div className={`h-6 w-[3px] bg-${textColor}`}></div>
-        <Link href="/" className={currentTab === "/" ? selectedClass : tabClass}>Home</Link>
+        <Link href="/" className={ isHome ? selectedClass : tabClass }>Home</Link>
         <div className={`h-6 w-[3px] bg-${textColor}`}></div>
-        <Link href="arts" className={currentTab === "/arts" ? selectedClass : tabClass}>Artes</Link>
+        <Link href="/arts" className={isArts ? selectedClass : tabClass}>Artes</Link>
       </nav>
 
       <div className="flex items-center space-x-4">
