@@ -2,7 +2,7 @@
 "use client"
 
 import { useEffect, useState } from "react";
-import { Carousel } from "../../content/Carousel";
+import { Carousel } from "@/components/ui/carousel";
 import { TweetCard } from "./tweet_card";
 
 export default function Tweets() {

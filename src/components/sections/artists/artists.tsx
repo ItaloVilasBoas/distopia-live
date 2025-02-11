@@ -1,4 +1,4 @@
-import { Carousel } from "@/components/content/Carousel";
+import { Carousel } from "@/components/ui/carousel";
 import ArtistCard from "./artist_card";
 
 const artistItems = [

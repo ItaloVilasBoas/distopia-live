@@ -1,4 +1,4 @@
-import { Carousel } from "../../content/Carousel";
+import { Carousel } from "@/components/ui/carousel";
 import { VideoCard } from "./VideoCard";
 
 const featuredItems = Array.from({ length: 30 }, (_, index) => ({
