@@ -1,0 +1,13 @@
+.left-logo svg {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  clip-path: inset(0 0 0 50%);
+  z-index: 1;
+}
+
+.right-logo svg {
+  position: absolute;
+  transform: translate(50%, -50%);
+  clip-path: inset(0 50% 0 0);
+  z-index: 1;
+}
