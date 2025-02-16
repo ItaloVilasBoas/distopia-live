@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface CarouselProps {
@@ -9,11 +9,13 @@ interface CarouselProps {
 
 export function Carousel({ items, widthValue = 'w-96' }: CarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const randomItemRef = useRef<HTMLDivElement>(null);
 
-  let [widthNumberValue, widthUnit] = widthValue.includes('-') 
+  let [widthNumberValue, widthUnit] = widthValue.includes('-')
     ? [Number(widthValue.split('-')[1]) * 0.25, 'rem']
     : [Number(widthValue.split(/(?=\D)/)[0]), widthValue.split(/(?=\D)/)[1]];
-  
+
   if (widthValue === 'w-full') {
     widthNumberValue = 100;
     widthUnit = '%';
@@ -27,14 +29,25 @@ export function Carousel({ items, widthValue = 'w-96' }: CarouselProps) {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + items.length) % items.length);
   };
 
+  const hasNext = () => {
+    const carouselWidth = carouselRef.current?.clientWidth;
+    const itemWidth = randomItemRef.current?.clientWidth;
+    if(carouselWidth && itemWidth) {
+      const fitInScreen = Math.floor(carouselWidth / itemWidth);
+      return fitInScreen !== items.length - currentIndex;
+    }
+    return true;
+  }
+
   return (
     <div className="relative w-full overflow-hidden">
       <div
+        ref={carouselRef}
         className="flex transition-transform duration-500 ease-in-out"
         style={{ transform: `translateX(-${currentIndex * widthNumberValue}${widthUnit})` }}
       >
         {items.map((item, index) => (
-          <div key={index} className={`${widthValue} flex-shrink-0`}>
+          <div ref={randomItemRef} key={index} className={`${widthValue} flex-shrink-0`}>
             {item}
           </div>
         ))}
@@ -49,7 +62,7 @@ export function Carousel({ items, widthValue = 'w-96' }: CarouselProps) {
         </button>
       )}
 
-      {currentIndex < items.length - 1 && (
+      {hasNext() && (
         <button
           onClick={nextSlide}
           className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-l-lg hover:bg-white"

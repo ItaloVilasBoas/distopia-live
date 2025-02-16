@@ -1,3 +1,4 @@
+"use client";
 import Artists from "@/components/sections/artists/artists";
 import Catalog from "@/components/sections/catalog/catalog";
 import LatestUpdates from "@/components/sections/latest-updates/latest_updates";

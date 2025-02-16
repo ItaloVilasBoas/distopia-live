@@ -1,35 +1,35 @@
-'use client'
 import Image from 'next/image';
 import './videos.css';
 
-type FeaturedCardProps = {
-  imageUrl: string;
+export interface VideoCardProps {
+  id: string;
   title: string;
+  description: string;
+  thumbnails: {
+    default: Thumbnail;
+    medium: Thumbnail
+    high: Thumbnail
+    standard: Thumbnail
+    maxres: Thumbnail
+  }
 }
 
-export function VideoCard({ imageUrl, title }: FeaturedCardProps) {
+interface Thumbnail {
+  url: string;
+  width: number;
+  height: number;
+}
 
-  const extractDimensions = (url: string) => {
-    const regex = /https:\/\/picsum\.photos\/(\d+)\/(\d+)/;
-    const match = url.match(regex);
-
-    if (match) {
-      const width = parseInt(match[1], 10);
-      const height = parseInt(match[2], 10);
-      return { width, height };
-    }
-
-    return { width: 800, height: 400 };
-  };
-  const { width, height } = extractDimensions(imageUrl);
+export function VideoCard(props: VideoCardProps) {
+  const handleClick = () => window.open(`https://www.youtube.com/watch?v=${props.id}`, '_blank');
 
   return (
-    <div className="video bg-white rounded-lg shadow-lg overflow-hidden mx-4 my-4">
+    <div className="video bg-white rounded-lg shadow-lg overflow-hidden mx-4 my-4" onClick={handleClick}>
       <Image
-        src={imageUrl}
-        alt={title}
-        width={width}
-        height={height}
+        src={props.thumbnails.default.url}
+        alt={props.title}
+        width={props.thumbnails.default.width}
+        height={props.thumbnails.default.height}
         className=" h-48 object-cover"
       />
     </div>
