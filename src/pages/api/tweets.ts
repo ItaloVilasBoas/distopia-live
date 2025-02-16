@@ -1,6 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
+  await new Promise((resolve) => setTimeout(resolve, 1500));
   res.status(200).json({
     tweets: [
       '<blockquote class="twitter-tweet" data-theme="dark" data-dnt="true" align="center"><p lang="pt" dir="ltr">PRA FECHARMOS O ANO ☀️👆<br><br>❤️‍🔥TEATRO DOS LUNÁTICOS - SHOW DE TALENTOS❤️‍🔥<br><br>-Dia 13/12 SEXTA FEIRA - 20:00; <br>-TODOS podem se apresentar; <br>-Temática livre; <br>-Envie seu desenho, video, curta, imitação, meme, jogo, site, TUDO É ACEITO; <a href="https://t.co/BHwtjhi3Fp">pic.twitter.com/BHwtjhi3Fp</a></p>&mdash; Distopia ඞ (@Distopialel) <a href="https://twitter.com/Distopialel/status/1864358000611188995?ref_src=twsrc%5Etfw">December 4, 2024</a></blockquote>',

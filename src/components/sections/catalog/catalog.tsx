@@ -1,30 +1,22 @@
 import { Carousel } from "@/components/ui/carousel";
-import { CatalogCard } from "./catalog_card";
-
-const featuredItems = [
-  {
-    imageUrl: "https://picsum.photos/600/900?random=1",
-    title: "Item 1",
-  },
-  {
-    imageUrl: "https://picsum.photos/600/900?random=2",
-    title: "Item 2",
-  },
-  {
-    imageUrl: "https://picsum.photos/600/900?random=3",
-    title: "Item 3",
-  },
-  {
-    imageUrl: "https://picsum.photos/600/900?random=4",
-    title: "Item 4",
-  },
-  {
-    imageUrl: "https://picsum.photos/600/900?random=5",
-    title: "Item 5",
-  },
-];
+import { CatalogCard, FeaturedCardProps } from "./catalog_card";
+import { useEffect, useRef, useState } from "react";
+import Loading from "@/components/ui/loading";
 
 export default function Catalog() {
+  const featuredItems = useRef([] as FeaturedCardProps[])
+  const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    fetch(`/catalog`)
+      .then((res) => res.json())
+      .then((data) => {
+        featuredItems.current.push(...data.content);
+        setLoading(false);
+      });
+  }, [])
+
   return (
     <section className="px-48 py-20">
       <hr className="h-px my-8 bg-black border-0 mb-20" />
@@ -34,9 +26,10 @@ export default function Catalog() {
         <div className="bg-[#9e4688] w-16 h-5"></div>
         <div className="bg-[#9e4688] w-32 h-5"></div>
       </div>
+      <Loading isLoading={isLoading} color="black"/>
       <Carousel
         widthValue="w-56"
-        items={featuredItems.map((item, index) => (
+        items={featuredItems.current.map((item, index) => (
           <CatalogCard key={index} {...item} />
         ))}
       />

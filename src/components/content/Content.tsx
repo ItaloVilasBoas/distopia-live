@@ -1,38 +1,33 @@
-import { FeatureCard } from "./FeatureCard";
+import { HighlightCard } from "./FeatureCard";
 
 import Videos from "../sections/videos/videos";
 import Tweets from "../sections/tweets/tweets";
 import { Carousel } from "../ui/carousel";
-
-const featuredItems = [
-  {
-    imageUrl: 'https://picsum.photos/800/400?random=1',
-    title: 'Featured Item 1',
-    description: 'Description for featured item 1',
-    tamanho: 3
-  },
-  {
-    imageUrl: 'https://picsum.photos/800/400?random=2',
-    title: 'Featured Item 2',
-    description: 'Description for featured item 2',
-    tamanho: 3
-  },
-  {
-    imageUrl: 'https://picsum.photos/800/400?random=3',
-    title: 'Featured Item 3',
-    description: 'Description for featured item 3',
-    tamanho: 3
-  }
-];
+import { useEffect, useRef, useState } from "react";
+import Loading from "../ui/loading";
 
 export default function Content() {
-    return (
+  const highlights = useRef([] as HighlightCard[]);
+  const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    fetch('/highlight')
+      .then((res) => res.json())
+      .then((data) => {
+        highlights.current.push(...data);
+        setLoading(false);
+      });
+  }, []);
+
+  return (
     <section className="min-h-screen bg-black p-8">
       <div className="pb-16">
         <h1 className="text-4xl font-bold text-white mb-8">Destaques</h1>
+        <Loading isLoading={isLoading} color="white" />
         <Carousel widthValue="w-full"
-          items={featuredItems.map((item, index) => (
-            <FeatureCard key={index} {...item} />
+          items={highlights.current.map((item, index) => (
+            <HighlightCard key={index} {...item} />
           ))}
         />
       </div>
