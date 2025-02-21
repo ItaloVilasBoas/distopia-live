@@ -11,7 +11,7 @@ export default function Tweets() {
 
   useEffect(() => {
     setLoading(true);
-    fetch('/tweets')
+    fetch('/api/tweets')
       .then(res => res.json())
       .then(data => {
         htmlList.current.push(...data.tweets);

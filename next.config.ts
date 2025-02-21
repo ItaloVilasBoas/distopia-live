@@ -4,8 +4,8 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
-        source: "/:path*",
-        destination: "/api/:path*",
+        source: "/api/:path*",
+        destination: "/api/:path*", //TODO: change for the real api path
       },
     ];
   },

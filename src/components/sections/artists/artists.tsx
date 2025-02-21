@@ -15,7 +15,7 @@ export default function Artists() {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`/artists`)
+    fetch(`/api/artists`)
       .then((res) => res.json())
       .then((data) => {
         artistItems.current.push(...data.content);

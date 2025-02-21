@@ -26,7 +26,7 @@ export default function LatestUpdates() {
 
   useEffect(() => {
     setLoadingMangas(true);
-    fetch(`/latest?type=manga`)
+    fetch(`/api/latest?type=manga`)
       .then((res) => res.json())
       .then((data) => {
         latestMangas.current.push(...data.content);
@@ -34,7 +34,7 @@ export default function LatestUpdates() {
       });
 
     setLoadingAnimations(true);
-    fetch(`/latest?type=animation`)
+    fetch(`/api/latest?type=animation`)
       .then((res) => res.json())
       .then((data) => {
         latestAnimation.current.push(...data.content);
@@ -42,7 +42,7 @@ export default function LatestUpdates() {
       });
 
     setLoadingGallery(true);
-    fetch(`/latest?type=gallery`)
+    fetch(`/api/latest?type=gallery`)
       .then((res) => res.json())
       .then((data) => {
         latestGallery.current.push(...data.content);
