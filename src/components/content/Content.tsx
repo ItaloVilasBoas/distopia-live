@@ -12,7 +12,7 @@ export default function Content() {
 
   useEffect(() => {
     setLoading(true);
-    fetch('/highlight')
+    fetch('/api/highlight')
       .then((res) => res.json())
       .then((data) => {
         highlights.current.push(...data);

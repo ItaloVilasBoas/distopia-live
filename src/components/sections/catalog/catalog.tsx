@@ -9,7 +9,7 @@ export default function Catalog() {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`/catalog`)
+    fetch(`/api/catalog`)
       .then((res) => res.json())
       .then((data) => {
         featuredItems.current.push(...data.content);

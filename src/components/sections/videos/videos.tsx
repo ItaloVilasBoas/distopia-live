@@ -9,7 +9,7 @@ export default function Videos() {
 
   useEffect(() => {
     setLoading(true);
-    fetch('/recent-videos')
+    fetch('/api/recent-videos')
       .then((res) => res.json())
       .then((data) => {
         videos.current.push(...data.videos);
