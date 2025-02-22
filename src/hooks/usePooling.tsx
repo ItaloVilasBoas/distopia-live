@@ -3,29 +3,27 @@ import { useEffect, useState } from 'react';
 const usePooling = (url: string , options = {}, intervalTime = 60000) => {
   const [data, setData] = useState(null);
   const [isOnline, setIsOnline] = useState(false);
-  const [error, setError] = useState(null);
+  const [isFirstFetch, setIsFirstFetch] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await fetch(url, options);
-        const result = await response.json();
-        setData(result);
-        setIsOnline(result.success);
-        setError(null);
-      } catch (err) {
-        setError(err);
-        setIsOnline(false);
-      }
+      const response = await fetch(url, options);
+      const result = await response.json();
+      setData(result);
+      setIsOnline(result.success);
     };
 
-    fetchData();
+    if(isFirstFetch) {
+      fetchData();
+      setIsFirstFetch(false);
+    }
+
     const interval = setInterval(fetchData, intervalTime);
 
     return () => clearInterval(interval);
-  }, [url, options, intervalTime]);
+  }, [url, options, intervalTime, isFirstFetch]);
 
-  return { data, isOnline, error };
+  return { data, isOnline };
 };
 
 export default usePooling;

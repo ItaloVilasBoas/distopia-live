@@ -1,35 +1,28 @@
 import { Carousel } from "@/components/ui/carousel";
 import ArtistCard from "./artist_card";
+import { useEffect, useRef, useState } from "react";
+import Loading from "@/components/ui/loading";
 
-const artistItems = [
-  {
-    id: 1,
-    imageUrl: 'https://picsum.photos/800/800?random=1',
-    name: 'Mineiro',
-  },
-  {
-    id: 2,
-    imageUrl: 'https://picsum.photos/800/800?random=2',
-    name: 'Adinolfi',
-  },
-  {
-    id: 3,
-    imageUrl: 'https://picsum.photos/800/800?random=3',
-    name: 'VilCinico',
-  },
-  {
-    id: 4,
-    imageUrl: 'https://picsum.photos/800/800?random=4',
-    name: 'Elkian',
-  },
-  {
-    id: 5,
-    imageUrl: 'https://picsum.photos/800/800?random=5',
-    name: 'Kim Jung Gi',
-  }
-];
+interface ArtistItem {
+  id: number;
+  imageUrl: string;
+  name: string;
+}
 
 export default function Artists() {
+  const artistItems = useRef([] as ArtistItem[]);
+  const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    fetch(`/api/artists`)
+      .then((res) => res.json())
+      .then((data) => {
+        artistItems.current.push(...data.content);
+        setLoading(false);
+      });
+  }, [])
+
   return (
     <section className="bg-black">
       <div className="upper-teeth-white"></div>
@@ -43,8 +36,9 @@ export default function Artists() {
       <div className="relative z-10">
         <div className="absolute left-0 right-0 top-[100px] bottom-0 m-auto w-[70%]">
           <h2 className="text-4xl font-bold text-white mb-8">Artistas</h2>
+          <Loading isLoading={isLoading} color="white"/>
           <Carousel widthValue="w-60"
-            items={artistItems.map((item, index) => (
+            items={artistItems.current.map((item, index) => (
               <ArtistCard key={index} {...item} />
             ))}
           />

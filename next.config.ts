@@ -1,6 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path*",
+        destination: "/api/:path*", //TODO: change for the real api path
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {

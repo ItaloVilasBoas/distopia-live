@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-type FeaturedCardProps = {
+export interface FeaturedCardProps {
   imageUrl: string;
   title: string;
 };

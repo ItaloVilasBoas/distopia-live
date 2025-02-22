@@ -1,14 +1,13 @@
 'use client'
 import Image from 'next/image';
 
-type FeaturedCardProps = {
-  imageUrl: string;
-  title: string;
-  description: string;
+export interface HighlightCard {
+  id: number;
+  name: string;
+  url: string;
 }
 
-export function FeatureCard({ imageUrl, title, description }: FeaturedCardProps) {
-
+export function HighlightCard({ url, name }: HighlightCard) {
   const extractDimensions = (url: string) => {
     const regex = /https:\/\/picsum\.photos\/(\d+)\/(\d+)/;
     const match = url.match(regex);
@@ -21,20 +20,20 @@ export function FeatureCard({ imageUrl, title, description }: FeaturedCardProps)
 
     return { width: 800, height: 400 };
   };
-  const { width, height } = extractDimensions(imageUrl);
+  const { width, height } = extractDimensions(url);
 
   return (
     <div className="bg-white rounded-lg shadow-lg overflow-hidden mx-4">
       <Image
-        src={imageUrl}
-        alt={title}
+        src={url}
+        alt={name}
         width={width}
         height={height}
         className="w-full h-48 object-cover"
       />
       <div className="p-4">
-        <h3 className="text-xl font-semibold mb-2">{title}</h3>
-        <p className="text-gray-600">{description}</p>
+        <h3 className="text-xl font-semibold mb-2">{name}</h3>
+        {/* <p className="text-gray-600">{description}</p> */}
       </div>
     </div>
   );

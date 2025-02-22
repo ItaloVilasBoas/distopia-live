@@ -1,25 +1,54 @@
+"use client";
 import DistopiaLogoSVG from "@/components/ui/distopia_logo_svg";
+import Loading from "@/components/ui/loading";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+
+interface LatestItem {
+  id: number;
+  imageUrl: string;
+  name: string;
+}
 
 export default function LatestUpdates() {
-  const latestMangas = [1,2,3,4,5].map(i => ({
-    imageUrl: `https://picsum.photos/800/400?random=${i}`,
-    name: `Item ${i}`,
-  }));
-  const latestAnimation = [6,7,8,9,10].map(i => ({
-    imageUrl: `https://picsum.photos/800/400?random=${i}`,
-    name: `Item ${i}`,
-  }));
-  const latestGallery = [11,12,13,14,15].map(i => ({
-    imageUrl: `https://picsum.photos/800/400?random=${i}`,
-    name: `Item ${i}`,
-  }));
+  const latestMangas = useRef([] as LatestItem[]);
+  const [isLoadingMangas, setLoadingMangas] = useState(false);
+  const latestAnimation = useRef([] as LatestItem[]);
+  const [isLoadingAnimations, setLoadingAnimations] = useState(false);
+  const latestGallery = useRef([] as LatestItem[]);
+  const [isLoadingGallery, setLoadingGallery] = useState(false);
   const sections = [
-    { title: 'Mangá', list: latestMangas, link: '/arts/manga' },
-    { title: 'Animação', list: latestAnimation, link: '/arts/animation' },
-    { title: 'Galeria', list: latestGallery, link: '/arts/gallery' },
+    { title: 'Mangá', list: latestMangas, link: '/arts/manga', isLoading: isLoadingMangas },
+    { title: 'Animação', list: latestAnimation, link: '/arts/animation', isLoading: isLoadingAnimations },
+    { title: 'Galeria', list: latestGallery, link: '/arts/gallery', isLoading: isLoadingGallery },
   ];
+
+  useEffect(() => {
+    setLoadingMangas(true);
+    fetch(`/api/latest?type=manga`)
+      .then((res) => res.json())
+      .then((data) => {
+        latestMangas.current.push(...data.content);
+        setLoadingMangas(false);
+      });
+
+    setLoadingAnimations(true);
+    fetch(`/api/latest?type=animation`)
+      .then((res) => res.json())
+      .then((data) => {
+        latestAnimation.current.push(...data.content);
+        setLoadingAnimations(false);
+      });
+
+    setLoadingGallery(true);
+    fetch(`/api/latest?type=gallery`)
+      .then((res) => res.json())
+      .then((data) => {
+        latestGallery.current.push(...data.content);
+        setLoadingGallery(false);
+      });
+  }, []);
 
   return (
     <section>
@@ -33,16 +62,16 @@ export default function LatestUpdates() {
       </div>
 
       <div className="flex gap-16 w-2/3 justify-self-center">
-
         {sections.map((section, index) => (
           <div className="w-4/12 flex flex-col gap-2 items-center" key={index}>
             <span>{ section.title }</span>
+            <Loading isLoading={section.isLoading} color="black"/>
             <div className="flex flex-col gap-2 max-h-[680px] overflow-hidden ">
-              {section.list.map((item, index) => (
+              {section.list.current.map((item, index) => (
                 <Image src={item.imageUrl} alt={item.name} width={800} height={800} className="object-cover" key={index}/>
               ))}
             </div>
-            <Link href={section.link}>Veja mais</Link>
+            { !section.isLoading && <Link href={section.link}>Veja mais</Link> }
           </div>
         ))}
       </div>

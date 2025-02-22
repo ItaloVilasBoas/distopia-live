@@ -1,5 +1,3 @@
-"use client";
-
 import './live.css';
 import DistopiaTongueSVG from './distopia_tongue_svg';
 import DistopiaLogoSVG from '../../ui/distopia_logo_svg';
@@ -8,11 +6,9 @@ import { config } from '@/lib/config';
 import DistopiaTitleSVG from './distopia_title_svg';
 
 const LiveComponent = () => {
-  const isOnline = usePooling(config.baseUrl, {
-    headers: {
-      'X-API-Key': config.apiKey,
-    },
-  });
+  const isOnline = usePooling('/api/live', {
+    headers: { 'X-API-Key': config.apiKey }
+  }, 5000).isOnline;
 
   const mensagem = isOnline ? 'Estamos ao vivo' : 'Live off';
 
