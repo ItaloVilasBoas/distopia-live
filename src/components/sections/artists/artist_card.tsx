@@ -2,11 +2,11 @@ import Image from "next/image";
 
 type ArtistCardProps = {
   id: number;
-  imageUrl: string;
+  avatarUrl: string;
   name: string;
 }
 
-export default function ArtistCard({ id, imageUrl, name }: ArtistCardProps) {
+export default function ArtistCard({ id, avatarUrl: imageUrl, name }: ArtistCardProps) {
   return (
     <div className="flex flex-col items-center gap-1">
       <div className="rounded-full shadow-lg overflow-hidden mx-4">

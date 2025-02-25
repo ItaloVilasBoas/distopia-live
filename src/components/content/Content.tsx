@@ -17,6 +17,10 @@ export default function Content() {
       .then((data) => {
         highlights.current.push(...data);
         setLoading(false);
+      })
+      .catch(() => {
+        highlights.current = [];
+        setLoading(false);
       });
   }, []);
 
