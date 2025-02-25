@@ -6,7 +6,7 @@ import { config } from '@/lib/config';
 import DistopiaTitleSVG from './distopia_title_svg';
 
 const LiveComponent = () => {
-  const isOnline = usePooling('/api/live', {
+  const isOnline = usePooling('/api/live-status', {
     headers: { 'X-API-Key': config.apiKey }
   }, 5000).isOnline;
 

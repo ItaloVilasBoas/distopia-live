@@ -26,10 +26,10 @@ export function VideoCard(props: VideoCardProps) {
   return (
     <div className="video bg-white rounded-lg shadow-lg overflow-hidden mx-4 my-4" onClick={handleClick}>
       <Image
-        src={props.thumbnails.default.url}
+        src={props.thumbnails.standard.url}
         alt={props.title}
-        width={props.thumbnails.default.width}
-        height={props.thumbnails.default.height}
+        width={props.thumbnails.standard.width}
+        height={props.thumbnails.standard.height}
         className=" h-48 object-cover"
       />
     </div>

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 
 const usePooling = (url: string , options = {}, intervalTime = 60000) => {
-  const [data, setData] = useState(null);
   const [isOnline, setIsOnline] = useState(false);
   const [isFirstFetch, setIsFirstFetch] = useState(true);
 
@@ -9,8 +8,7 @@ const usePooling = (url: string , options = {}, intervalTime = 60000) => {
     const fetchData = async () => {
       const response = await fetch(url, options);
       const result = await response.json();
-      setData(result);
-      setIsOnline(result.success);
+      setIsOnline(result.isOnline);
     };
 
     if(isFirstFetch) {
@@ -23,7 +21,7 @@ const usePooling = (url: string , options = {}, intervalTime = 60000) => {
     return () => clearInterval(interval);
   }, [url, options, intervalTime, isFirstFetch]);
 
-  return { data, isOnline };
+  return { isOnline };
 };
 
 export default usePooling;

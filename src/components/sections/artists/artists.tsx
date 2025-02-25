@@ -5,7 +5,7 @@ import Loading from "@/components/ui/loading";
 
 interface ArtistItem {
   id: number;
-  imageUrl: string;
+  avatarUrl: string;
   name: string;
 }
 
@@ -18,7 +18,7 @@ export default function Artists() {
     fetch(`/api/artists`)
       .then((res) => res.json())
       .then((data) => {
-        artistItems.current.push(...data.content);
+        artistItems.current.push(...data);
         setLoading(false);
       });
   }, [])

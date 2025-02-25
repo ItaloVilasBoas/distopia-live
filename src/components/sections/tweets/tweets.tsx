@@ -14,7 +14,7 @@ export default function Tweets() {
     fetch('/api/tweets')
       .then(res => res.json())
       .then(data => {
-        htmlList.current.push(...data.tweets);
+        htmlList.current.push(...data.tweets.map(t => t.blockquote));
         const script = document.createElement('script');
         script.src = 'https://platform.twitter.com/widgets.js';
         script.async = true;

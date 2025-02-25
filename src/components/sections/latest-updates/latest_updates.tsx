@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 
 interface LatestItem {
   id: number;
-  imageUrl: string;
+  cover: string;
   name: string;
 }
 
@@ -26,7 +26,7 @@ export default function LatestUpdates() {
 
   useEffect(() => {
     setLoadingMangas(true);
-    fetch(`/api/latest?type=manga`)
+    fetch(`/api/latest-arts?type=manga`)
       .then((res) => res.json())
       .then((data) => {
         latestMangas.current.push(...data.content);
@@ -34,7 +34,7 @@ export default function LatestUpdates() {
       });
 
     setLoadingAnimations(true);
-    fetch(`/api/latest?type=animation`)
+    fetch(`/api/latest-arts?type=animation`)
       .then((res) => res.json())
       .then((data) => {
         latestAnimation.current.push(...data.content);
@@ -42,7 +42,7 @@ export default function LatestUpdates() {
       });
 
     setLoadingGallery(true);
-    fetch(`/api/latest?type=gallery`)
+    fetch(`/api/latest-arts?type=gallery`)
       .then((res) => res.json())
       .then((data) => {
         latestGallery.current.push(...data.content);
@@ -68,7 +68,7 @@ export default function LatestUpdates() {
             <Loading isLoading={section.isLoading} color="black"/>
             <div className="flex flex-col gap-2 max-h-[680px] overflow-hidden ">
               {section.list.current.map((item, index) => (
-                <Image src={item.imageUrl} alt={item.name} width={800} height={800} className="object-cover" key={index}/>
+                <Image src={item.cover} alt={item.name} width={800} height={800} className="object-cover" key={index}/>
               ))}
             </div>
             { !section.isLoading && <Link href={section.link}>Veja mais</Link> }
