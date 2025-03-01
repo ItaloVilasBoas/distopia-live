@@ -26,7 +26,7 @@ export default function Header() {
   } : {};
 
   return (
-    <header className={`flex justify-between items-center relative items-center px-6 py-6 bg-${bgColor} border-b`}
+    <header className={`flex justify-between relative items-center px-6 py-6 bg-${bgColor} border-b`}
       style={headerStyle}>
       <div className={`text-2xl font-bold text-${textColor}`}>distopia.</div>
 
