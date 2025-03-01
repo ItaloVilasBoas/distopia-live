@@ -18,7 +18,7 @@ export default function Catalog() {
   }, [])
 
   return (
-    <section className="px-48 py-20">
+    <section className="md:px-48 md:py-20 max-md:px-8">
       <hr className="h-px my-8 bg-black border-0 mb-20" />
       <div className="flex gap-5 items-center">
         <h2 className="text-3xl font-semibold dystopian">Catálogo</h2>

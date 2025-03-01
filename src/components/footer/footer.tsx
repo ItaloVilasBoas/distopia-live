@@ -10,7 +10,7 @@ export default function Footer() {
         </div>
         <h2 className="text-5xl font-extrabold dystopian">distopia.</h2>
       </div>
-      <div className="flex justify-self-center justify-between w-1/3">
+      <div className="md:flex justify-self-center md:justify-between w-1/3">
         <h3 className="font-bold dystopian text-2xl">Sobre</h3>
         <h3 className="font-bold dystopian text-2xl">Membros</h3>
         <h3 className="font-bold dystopian text-2xl">Ajuda</h3>
