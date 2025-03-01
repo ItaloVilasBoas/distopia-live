@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 type ArtistCardProps = {
   id: number;
@@ -19,7 +20,7 @@ export default function ArtistCard({ id, avatarUrl: imageUrl, name }: ArtistCard
         />
       </div>
       <span className="text-white text-xl">{name}</span>
-      <span className="text-orange-400 text-xs cursor-pointer">Olhar a galeria</span>
+      <Link href={`/artist/${id}`} className="text-orange-400 text-xs cursor-pointer">Olhar a galeria</Link>
     </div>
   );
 }

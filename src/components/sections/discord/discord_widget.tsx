@@ -1,6 +1,8 @@
+import { config } from "@/lib/config";
+
 export default function DiscordWidget() {
-  const serverId = "1315031756629475421";
-  const channelId = "1315031757241974826";
+  const serverId = config.DISCORD_SERVER_ID;
+  const channelId = config.DISCORD_CHANNEL_ID;
 
   return (
     <section className="bg-white justify-center relative">
