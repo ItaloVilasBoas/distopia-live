@@ -7,8 +7,8 @@ interface ListOfElementsProps {
   params: Promise<{ slug: string }>;
 }
 
-interface Item {
-  imageUrl: string;
+interface Art {
+  cover: string;
   name: string
 }
 
@@ -16,8 +16,8 @@ export default function ListOfElements({ params }: ListOfElementsProps) {
   const resolvedParams = use(params);
   const [loading, setLoading] = useState(false);
   const loadingRef = useRef<HTMLDivElement>(null);
-  const latestItems = useRef([] as Item[]);
-  const pageable = useRef({ page: 0, size: 8, totalPage: undefined })
+  const latestItems = useRef([] as Art[]);
+  const pageable = useRef({ nextToken: undefined as string | undefined, size: 8 })
   const availableRoutes: { [key: string]: string } = {
     animation: "animações",
     manga: "mangás",
@@ -45,8 +45,7 @@ export default function ListOfElements({ params }: ListOfElementsProps) {
       loadingRefCurr.getBoundingClientRect().top + window.scrollY;
 
     if (scrollPosition >= elementTop - 300 && !loading) {
-      if (pageable.current.totalPage === pageable.current.page + 1) return;
-      if(pageable.current.totalPage !== undefined) pageable.current.page++;
+      if(pageable.current.nextToken === '') return
       setLoading(true);
       fetchItems();
     }
@@ -56,17 +55,13 @@ export default function ListOfElements({ params }: ListOfElementsProps) {
     const params = new URLSearchParams({
       type: resolvedParams.slug,
       size: pageable.current.size.toString(),
-      page: pageable.current.page.toString(),
     });
-    fetch(`/api/items?${params}`)
+    if(pageable.current.nextToken) params.set("nextToken", pageable.current.nextToken);
+    fetch(`/api/arts?${params.toString()}`)
       .then((res) => res.json())
       .then((data) => {
         latestItems.current.push(...data.content);
-        pageable.current = {
-          page: data.page,
-          totalPage: data.totalPage,
-          size: data.size,
-        };
+        pageable.current.nextToken = data.nextToken ?? '';
         setLoading(false);
       });
   };
@@ -93,7 +88,7 @@ export default function ListOfElements({ params }: ListOfElementsProps) {
             className="relative hover:scale-105 transition-all duration-500 cursor-pointer"
           >
             <Image
-              src={item.imageUrl}
+              src={item.cover}
               alt={item.name}
               width={600}
               height={900}

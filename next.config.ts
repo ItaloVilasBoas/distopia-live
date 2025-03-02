@@ -1,3 +1,4 @@
+import { config } from "@/lib/config";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
@@ -5,7 +6,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/api/:path*",
-        destination: "/api/:path*", //TODO: change for the real api path
+        destination: `${config.baseUrl}/:path*`,
       },
     ];
   },
@@ -19,7 +20,13 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "uploads.disquscdn.com",
+        hostname: "i.ytimg.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "i.imgur.com",
         port: "",
         pathname: "/**",
       },

@@ -1,12 +1,13 @@
 import Image from "next/image";
+import Link from "next/link";
 
 type ArtistCardProps = {
   id: number;
-  imageUrl: string;
+  avatarUrl: string;
   name: string;
 }
 
-export default function ArtistCard({ id, imageUrl, name }: ArtistCardProps) {
+export default function ArtistCard({ id, avatarUrl: imageUrl, name }: ArtistCardProps) {
   return (
     <div className="flex flex-col items-center gap-1">
       <div className="rounded-full shadow-lg overflow-hidden mx-4">
@@ -19,7 +20,7 @@ export default function ArtistCard({ id, imageUrl, name }: ArtistCardProps) {
         />
       </div>
       <span className="text-white text-xl">{name}</span>
-      <span className="text-orange-400 text-xs cursor-pointer">Olhar a galeria</span>
+      <Link href={`/artist/${id}`} className="text-orange-400 text-xs cursor-pointer">Olhar a galeria</Link>
     </div>
   );
 }
