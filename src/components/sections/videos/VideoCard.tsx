@@ -30,7 +30,7 @@ export function VideoCard(props: VideoCardProps) {
         alt={props.title}
         width={props.thumbnails.standard.width}
         height={props.thumbnails.standard.height}
-        className=" h-48 object-cover"
+        className="h-48 object-cover"
       />
     </div>
   );

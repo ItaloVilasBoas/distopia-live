@@ -1,5 +1,5 @@
 'use client';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface CarouselProps {
@@ -9,17 +9,55 @@ interface CarouselProps {
 
 export function Carousel({ items, widthValue = 'w-96' }: CarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentWidthValue, setCurrentWidthValue] = useState(0);
+  const [currentWidthUnit, setCurrentWidthUnit] = useState('');
   const carouselRef = useRef<HTMLDivElement>(null);
   const randomItemRef = useRef<HTMLDivElement>(null);
 
-  let [widthNumberValue, widthUnit] = widthValue.includes('-')
-    ? [Number(widthValue.split('-')[1]) * 0.25, 'rem']
-    : [Number(widthValue.split(/(?=\D)/)[0]), widthValue.split(/(?=\D)/)[1]];
+  useEffect(() => {
+    const extractRealWidth = (): string => {
+      let realWidth = widthValue;
+      if(widthValue.includes('lg:')) {
+        const lgValue = realWidth.split('lg:')[1].split(' ')[0]
+        if (window.innerWidth > 1024 ) return lgValue;
+        realWidth = realWidth.replace(`lg:${lgValue}`, '');
+      }
 
-  if (widthValue === 'w-full') {
-    widthNumberValue = 100;
-    widthUnit = '%';
-  }
+      if(widthValue.includes('md:')) {
+        const mdValue = realWidth.split('md:')[1].split(' ')[0];
+        if (window.innerWidth > 768) return mdValue;
+        realWidth = realWidth.replace(`md:${mdValue}`, '');
+      }
+
+      if(widthValue.includes('sm:')) {
+        const smValue = realWidth.split('sm:')[1].split(' ')[0];
+        if (window.innerWidth > 640) return smValue;
+        realWidth = realWidth.replace(`sm:${smValue}`, '');
+      }
+
+      return realWidth.trim();
+    };
+
+    const extractCurrentWidthValueAndUnit = (): [number, string] => {
+      const realWidthString = extractRealWidth();
+      if (realWidthString === 'w-full') return [100, '%'];
+      return realWidthString.includes('-')
+        ? [Number(realWidthString.split('-')[1]) * 0.25, 'rem']
+        : [Number(realWidthString.split(/(?=\D)/)[0]), realWidthString.split(/(?=\D)/)[1]];
+    };
+
+    const updateSize = () => {
+      const [widthNumberValue, widthUnit] = extractCurrentWidthValueAndUnit();
+
+      setCurrentWidthValue(() => widthNumberValue);
+      setCurrentWidthUnit(() => widthUnit);
+    };
+
+    updateSize();
+    window.addEventListener('resize', updateSize);
+
+    return () => window.removeEventListener('resize', updateSize);
+  }, [widthValue]);
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
@@ -44,7 +82,7 @@ export function Carousel({ items, widthValue = 'w-96' }: CarouselProps) {
       <div
         ref={carouselRef}
         className="flex transition-transform duration-500 ease-in-out"
-        style={{ transform: `translateX(-${currentIndex * widthNumberValue}${widthUnit})` }}
+        style={{ transform: `translateX(-${currentIndex * currentWidthValue}${currentWidthUnit})` }}
       >
         {items.map((item, index) => (
           <div ref={randomItemRef} key={index} className={`${widthValue} flex-shrink-0`}>

@@ -82,10 +82,10 @@ export default function ListOfElements({ params }: ListOfElementsProps) {
           </span>
         </div>
       </div>
-      <div className="py-5 px-12 grid grid-cols-4 gap-10">
+      <div className="py-5 px-12 grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-10">
         {latestItems.current.map((item, index) => (<div
             key={index}
-            className="relative hover:scale-105 transition-all duration-500 cursor-pointer"
+            className="relative hover:scale-105 transition-all duration-500 cursor-pointer justify-self-center"
           >
             <Image
               src={item.cover}

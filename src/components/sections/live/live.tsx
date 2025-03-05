@@ -12,6 +12,10 @@ const LiveComponent = () => {
 
   const mensagem = isOnline ? 'Estamos ao vivo' : 'Live off';
 
+  const handleClick = () => {
+    window.open("https://www.twitch.tv/distopiapdc", "_blank");
+  };
+
   return (
     <section>
       <div className="bg-black text-white flex items-center justify-center h-16 gap-2.5">
@@ -26,7 +30,7 @@ const LiveComponent = () => {
             <DistopiaTitleSVG className="title"/>
             <DistopiaTongueSVG/>
           </div>
-          <div className="distopia-logo">
+          <div className="distopia-logo cursor-pointer" onClick={handleClick}>
             <DistopiaLogoSVG/>
           </div>
         </div>
