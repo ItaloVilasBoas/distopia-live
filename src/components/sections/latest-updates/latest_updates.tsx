@@ -61,7 +61,8 @@ export default function LatestUpdates() {
         </h2>
       </div>
 
-      <div className="flex gap-16 w-2/3 justify-self-center">
+      <div className="flex w-full md:flex-row gap-8 md:gap-16 w-full md:w-2/3 justify-center justify-self-center">
+
         {sections.map((section, index) => (
           <div className="w-4/12 flex flex-col gap-2 items-center" key={index}>
             <span>{ section.title }</span>

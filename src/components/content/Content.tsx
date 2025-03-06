@@ -29,7 +29,7 @@ export default function Content() {
       <div className="pb-16">
         <h1 className="text-4xl font-bold text-white mb-8">Destaques</h1>
         <Loading isLoading={isLoading} color="white" />
-        { !isLoading && highlights.current.length === 0 &&
+        {!isLoading && highlights.current.length === 0 &&
           <div className="text-3xl text-white flex justify-center">
             Sem destaques no momento...
           </div>
@@ -41,17 +41,19 @@ export default function Content() {
         />
       </div>
 
-      <div className="flex justify-between justify-self-center items-center gap-6">
+      <div className="flex flex-col md:flex-row justify-center items-center w-full md:w-auto px-4 gap-6 md:gap-6">
         <div className="flex gap-4">
           <div className="bg-[#feac2e] w-32 h-10"></div>
           <div className="bg-[#9e4688] w-16 h-10"></div>
           <div className="bg-white w-11 h-10"></div>
         </div>
-        <div className="relative">
-          <span className="text-5xl font-extrabold text-white dystopian">distopia.</span>
-          <span className="text-5xl font-extrabold text-white absolute top-6 right-0 dystopian">distopia.</span>
-          <span className="text-5xl font-extrabold text-white absolute bottom-6 right-0 dystopian">distopia.</span>
+
+        <div className="relative text-center">
+          <span className="text-4xl md:text-5xl font-extrabold text-white dystopian">distopia.</span>
+          <span className="text-4xl md:text-5xl font-extrabold text-white absolute top-4 md:top-6 right-0 dystopian">distopia.</span>
+          <span className="text-4xl md:text-5xl font-extrabold text-white absolute bottom-4 md:bottom-6 right-0 dystopian">distopia.</span>
         </div>
+
         <div className="flex gap-4">
           <div className="bg-[#9e4688] w-32 h-10"></div>
           <div className="bg-[#feac2e] w-16 h-10"></div>
