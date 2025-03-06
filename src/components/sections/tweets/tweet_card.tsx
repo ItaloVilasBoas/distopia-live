@@ -4,6 +4,6 @@ type FeaturedCardProps = {
 
 export function TweetCard({ __html }: FeaturedCardProps) {
   return (
-    <div className="ml-4" dangerouslySetInnerHTML={{ __html }} />
+    <div className="ml-4 max-sm:w-2" dangerouslySetInnerHTML={{ __html }} />
   );
 }

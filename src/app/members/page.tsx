@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default function Membros() {
   return (
-    <section className="flex items-center justify-center bg-[#dcdbd7]">
+    <section className="md:flex items-center justify-center bg-[#dcdbd7]">
       <span className="text-4xl font-bold">Em construção...</span>
       <Image
         src="/assets/in_progress.webp"
